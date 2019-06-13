@@ -5,9 +5,12 @@ function buildParam(prefix, obj, add) {
 	if (Array.isArray(obj)) {
 		for (var i = 0, l = obj.length; i < l; ++i) {
 			var inner = obj[i];
+			/* commented-out: only support flat-structure to avoid encoded-characters
 			var shouldIncludeIndex = typeof inner === 'object';
 			var arrayIndex = shouldIncludeIndex ? '[' + i + ']' : '[]';
 			buildParam(prefix + arrayIndex, inner, add);
+			*/
+			buildParam(prefix, inner, add);
 		}
 	} else if ( obj && typeof obj === "object" ) {
 		for (var name in obj) {
